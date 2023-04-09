@@ -8,12 +8,14 @@
 import UIKit
 
 final class ResultViewController: UIViewController {
-    
+    // MARK: IBOutlets
     @IBOutlet var resultLabel: UILabel!
     @IBOutlet var descriptionResultLabel: UILabel!
     
+    // MARK: Public properties
     var userAnswers: [Answer]!
 
+    // MARK: View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,10 +23,12 @@ final class ResultViewController: UIViewController {
         calculationResultQuiz()
     }
 
+    // MARK: IB Actions
     @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
     }
     
+    // MARK: Private Methods
     private func calculationResultQuiz() {
         var counterAnswers: [Temperament : Int] = [:]
         let answersType = userAnswers.map { $0.temperament }
@@ -38,6 +42,5 @@ final class ResultViewController: UIViewController {
         
         resultLabel.text = "Вы - \(mostCommonAnswer?.rawValue ?? "")"
         descriptionResultLabel.text = mostCommonAnswer?.definition
-        
     }
 }
